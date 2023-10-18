@@ -19,9 +19,9 @@ export default {
 </script>
 
 <template>
-    <header class="bg-body-tertiary">
+    <header>
 
-        <nav class="navbar navbar-expand-lg ">
+        <nav class="navbar navbar-dark navbar-expand-lg bg-transparent">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">BMusicTeachers</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -40,7 +40,7 @@ export default {
                     </ul>
                     <form class="d-flex me-2" role="search">
                         <input class="form-control me-2" type="search" v-model="store.searchQuery" @input="filterTeachers" placeholder="Cerca per nome..." aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Cerca</button>
+                        <button class="btn btn-light" type="submit">Cerca</button>
                     </form>
                 </div>
             </div>
