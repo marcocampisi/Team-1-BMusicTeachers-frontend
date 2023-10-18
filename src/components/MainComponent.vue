@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import HeaderComponent from './HeaderComponent.vue';
+import { store } from '../js/store'
 
 export default {
     name: 'MainComponent',
@@ -10,7 +11,8 @@ export default {
     data() {
         return {
             teacherArray: [],
-            filteredTeacherArray: []
+            filteredTeacherArray: [],
+            store
         };
     },
     computed: {},
@@ -19,6 +21,8 @@ export default {
     },
     methods: {
         getData() {
+            this.teacherArray = []
+
             axios.get('http://localhost:8000/api/teachers')
                 .then(res => {
                 this.teacherArray = res.data.results;
@@ -41,7 +45,7 @@ export default {
     <main>
         <div class="container">
             <div class="row">
-                <template v-if="searchQuery === ''">
+                <template v-if="store.searchQuery === ''">
                     <div class="col-3 mb-3" v-for="teacher in teacherArray" :key="teacher.id">
                         <div class="card">
                             <div class="card-top">

@@ -1,4 +1,5 @@
 <script>
+import { store } from '../js/store'
 export default {
     name: 'HeaderComponent',
     props: {
@@ -6,12 +7,12 @@ export default {
     },
     data(){
         return {
-            searchQuery: ''
+            store
         }
     },
     methods: {
         filterTeachers() {
-            this.filterTeachers(this.searchQuery)
+            this.filterTeachers(this.store.searchQuery)
         }
     }
 }
@@ -37,7 +38,7 @@ export default {
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" v-model="searchQuery" @input="filterTeachers" placeholder="Cerca per nome..." aria-label="Search">
+                        <input class="form-control me-2" type="search" v-model="store.searchQuery" @input="filterTeachers" placeholder="Cerca per nome..." aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Cerca</button>
                     </form>
                 </div>
