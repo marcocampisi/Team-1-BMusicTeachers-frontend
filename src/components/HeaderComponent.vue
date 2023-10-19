@@ -1,5 +1,6 @@
 <script>
-import { store } from '../js/store'
+import { store } from '../js/store';
+import axios from 'axios';
 export default {
     name: 'HeaderComponent',
     props: {
@@ -7,12 +8,23 @@ export default {
     },
     data(){
         return {
-            store
+            store,
+            subjectsArray: [],
         }
+    },
+    created() {
+        this.getSubjects();
     },
     methods: {
         filterTeachers() {
             this.filterTeachers(this.store.searchQuery)
+        },
+        getSubjects(){
+            axios.get('http://localhost:8000/api/subjects')
+                .then(res => {
+                this.subjectsArray = res.data.results;
+                console.log(this.subjectsArray);
+            });
         }
     }
 }
@@ -38,7 +50,13 @@ export default {
                             <a class="nav-link" href="#">Messaggi</a>
                         </li>
                     </ul>
+
                     <form class="d-flex me-2" role="search">
+                        
+                        <select class="form-select me-2" aria-label="Default select example">
+                            <option v-for="subject in subjectsArray" :key="subject.id" :value="subject.name">{{ subject.name }}</option>
+                        </select>
+                        
                         <input class="form-control me-2" type="search" v-model="store.searchQuery" @input="filterTeachers" placeholder="Cerca per nome..." aria-label="Search">
                         <button class="btn btn-light" type="submit">Cerca</button>
                     </form>
