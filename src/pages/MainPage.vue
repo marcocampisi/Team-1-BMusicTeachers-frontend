@@ -49,7 +49,7 @@ export default {
                     <div class="col-12 col-md-4 col-lg-3 " v-for="teacher in teacherArray" :key="teacher.id">
                         <div class="card h-100">
                             <div class="card-top text-center">
-                                <img class="img-fluid" :src="teacher.full_photo_img" alt="">
+                                <img class="img-fluid img-card" :src="teacher.full_photo_img" alt="">
                             </div>
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <h2>{{ teacher.first_name }} {{ teacher.last_name }}</h2>

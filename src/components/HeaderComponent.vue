@@ -36,7 +36,7 @@ export default {
         <nav class="navbar navbar-dark navbar-expand-lg bg-transparent">
       <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="../assets/logo.png" alt="Musicisti in rete Logo" width="50" height="50">
+                <img class="logo" src="../assets/logo.png" alt="Musicisti in rete Logo">
             </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
