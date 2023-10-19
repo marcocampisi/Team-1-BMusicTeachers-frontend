@@ -25,15 +25,19 @@ export default {
 
             axios.get('http://localhost:8000/api/teachers')
                 .then(res => {
-                this.teacherArray = res.data.results;
-                console.log(this.teacherArray);
-            });
+                    this.teacherArray = res.data.results;
+                    console.log(this.teacherArray);
+                });
         },
         filterTeachers(searchQuery) {
-            this.filteredTeacherArray = this.teacherArray.filter(teacher => {
+            /*this.filteredTeacherArray = this.teacherArray.filter(teacher => {
                 const fullName = teacher.first_name + ' ' + teacher.last_name;
                 return fullName.toLowerCase().includes(searchQuery.toLowerCase());
-            });
+            });*/
+            axios.get(`http://localhost:8000/api/teachers/search?q=${searchQuery}`)
+                .then(res => {
+                    this.filteredTeacherArray = res.data.results;
+                });
         }
     },
     components: { HeaderComponent }
@@ -80,6 +84,4 @@ export default {
     </main>
 </template>
 
-<style scoped lang="scss">
-    
-</style>
+<style scoped lang="scss"></style>
