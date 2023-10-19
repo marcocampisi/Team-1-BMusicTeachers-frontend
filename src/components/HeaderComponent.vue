@@ -34,8 +34,10 @@ export default {
     <header>
 
         <nav class="navbar navbar-dark navbar-expand-lg bg-transparent">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">BMusicTeachers</a>
+      <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../assets/logo.png" alt="Musicisti in rete Logo" width="50" height="50">
+            </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
