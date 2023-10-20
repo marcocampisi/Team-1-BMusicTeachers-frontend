@@ -4,10 +4,7 @@ import HeaderComponent from '../components/HeaderComponent.vue';
 import { store } from '../js/store';
 
 export default {
-    name: 'HeaderComponent',
-    props: {
-        filtersTeachers: Function
-    },
+    name: 'MainPage',
     data() {
         return {
             teacherArray: [],
@@ -16,7 +13,7 @@ export default {
         };
     },
     computed: {},
-    created() {
+    mounted() {
         this.getData();
     },
     methods: {
@@ -29,16 +26,18 @@ export default {
                 });
         },
         filterTeachers() {
-            axios.get(`http://localhost:8000/api/teachers`, {
-                params: {
-                    searchQuery: this.store.searchQuery,
-                    combinedSearchQuery: this.store.combinedSearchQuery
+            this.filteredTeachersArray = []
+
+            axios.post(`http://localhost:8000/api/teachers/search`, {
+                data: this.store.teacherQuery,
+                headers: {
+                    'Content-Type': 'multipart/form-data'
                 }
             })
-                .then(res => {
-                    this.filteredTeacherArray = res.data.results;
-                    console.log(this.filteredTeacherArray);
-                }); //funzione che richiama una rotta api filtrata per uno o per entrambi i valori degli input
+            .then(res => {
+                this.filteredTeacherArray = res.data.results;
+                console.log(this.filteredTeacherArray);
+            });
         }
     },
     components: {
@@ -48,11 +47,11 @@ export default {
 </script>
 
 <template>
-    <HeaderComponent :filterTeachers="filterTeachers" />
+    <HeaderComponent :filterTeachers="filterTeachers"/>
     <main class="mt-3">
         <div class="container">
             <div class="row row-gap-2">
-                <template v-if="store.searchQuery === ''">
+                <template v-if="filteredTeacherArray.length === 0">
                     <div class="col-12 col-md-4 col-lg-3 " v-for="teacher in teacherArray" :key="teacher.id">
                         <div class="card h-100">
                             <div class="card-top text-center">
