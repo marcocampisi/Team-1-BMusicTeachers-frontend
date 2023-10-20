@@ -25,15 +25,20 @@ export default {
 
             axios.get('http://localhost:8000/api/teachers')
                 .then(res => {
-                this.teacherArray = res.data.results;
-                console.log(this.teacherArray);
-            });
+                    this.teacherArray = res.data.results;
+                });
         },
-        filterTeachers(searchQuery) {
-            this.filteredTeacherArray = this.teacherArray.filter(teacher => {
-                const fullName = teacher.first_name + ' ' + teacher.last_name;
-                return fullName.toLowerCase().includes(searchQuery.toLowerCase());
-            });
+        filterTeachers() {
+            axios.get(`http://localhost:8000/api/teachers`, {
+                params: {
+                    searchQuery: this.store.searchQuery,
+                    combinedSearchQuery: this.store.combinedSearchQuery
+                }
+            })
+                .then(res => {
+                    this.filteredTeacherArray = res.data.results;
+                    console.log(this.filteredTeacherArray);
+                }); //funzione che richiama una rotta api filtrata per uno o per entrambi i valori degli input
         }
     },
     components: { HeaderComponent }
@@ -80,6 +85,4 @@ export default {
     </main>
 </template>
 
-<style scoped lang="scss">
-    
-</style>
+<style scoped lang="scss"></style>
