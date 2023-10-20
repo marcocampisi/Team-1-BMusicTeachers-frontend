@@ -6,7 +6,7 @@ export default {
     props: {
         filterTeachers: Function
     },
-    data(){
+    data() {
         return {
             store,
             subjectsArray: [],
@@ -19,12 +19,12 @@ export default {
         filterTeachers() {
             this.filterTeachers(this.store.searchQuery)
         },
-        getSubjects(){
+        getSubjects() {
             axios.get('http://localhost:8000/api/subjects')
                 .then(res => {
-                this.subjectsArray = res.data.results;
-                console.log(this.subjectsArray);
-            });
+                    this.subjectsArray = res.data.results;
+                    console.log(this.subjectsArray);
+                });
         }
     }
 }
@@ -34,10 +34,10 @@ export default {
     <header>
 
         <nav class="navbar navbar-dark navbar-expand-lg bg-transparent">
-      <div class="container">
-            <a class="navbar-brand" href="#">
-                <img class="logo" src="../assets/logo.png" alt="Musicisti in rete Logo">
-            </a>
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img class="logo" src="../assets/logo.png" alt="Musicisti in rete Logo">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -54,12 +54,14 @@ export default {
                     </ul>
 
                     <form class="d-flex me-2" role="search">
-                        
+
                         <select class="form-select me-2" aria-label="Default select example">
-                            <option v-for="subject in subjectsArray" :key="subject.id" :value="subject.name">{{ subject.name }}</option>
+                            <option v-for="subject in subjectsArray" :key="subject.id" :value="subject.name">{{ subject.name
+                            }}</option>
                         </select>
-                        
-                        <input class="form-control me-2" type="search" v-model="store.searchQuery" @input="filterTeachers" placeholder="Cerca per nome..." aria-label="Search">
+
+                        <input class="form-control me-2" type="search" v-model="store.searchQuery" @input="filterTeachers"
+                            placeholder="Cerca per nome..." aria-label="Search">
                         <button class="btn btn-light" type="submit">Cerca</button>
                     </form>
                 </div>
