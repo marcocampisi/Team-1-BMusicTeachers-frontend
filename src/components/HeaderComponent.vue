@@ -7,30 +7,29 @@ export default {
         filterTeachers: Function
     },
     data() {
-        data() {
-            return {
-                store,
-                subjectsArray: [],
-            }
-        },
-        created() {
-            this.getSubjects();
-        },
-        methods: {
-            filterTeachers() {
-                //console.log(this.store.searchQuery, this.store.combinedSearchQuery)
-                this.filterTeachers() //richiama la funzione in MainPage
-            },
-            getSubjects() {
-                getSubjects() {
-                    axios.get('http://localhost:8000/api/subjects')
-                        .then(res => {
-                            this.subjectsArray = res.data.results;
-                            console.log(this.subjectsArray);
-                        });
-                }
-            }
+        return {
+            store,
+            subjectsArray: [],
         }
+    },
+    created() {
+        this.getSubjects();
+    },
+    methods: {
+        filterTeachers() {
+            //console.log(this.store.searchQuery, this.store.combinedSearchQuery)
+            this.filterTeachers(); //richiama la funzione in MainPage
+        },
+        getSubjects() {
+            axios.get('http://localhost:8000/api/subjects')
+                .then(res => {
+                    this.subjectsArray = res.data.results;
+                    console.log(this.subjectsArray);
+                });
+        }
+    }
+}
+
 </script>
 
 <template>
@@ -76,6 +75,7 @@ export default {
                         </form>
                     </div>
                 </div>
+            </div>
         </nav>
     </header>
 </template>
