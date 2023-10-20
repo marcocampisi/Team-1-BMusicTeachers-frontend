@@ -1,10 +1,10 @@
 <script>
 import axios from 'axios';
 import HeaderComponent from '../components/HeaderComponent.vue';
-import { store } from '../js/store'
+import { store } from '../js/store';
 
 export default {
-    name: 'MainComponent',
+    name: 'HeaderComponent',
     props: {
         filtersTeachers: Function
     },
@@ -41,7 +41,9 @@ export default {
                 }); //funzione che richiama una rotta api filtrata per uno o per entrambi i valori degli input
         }
     },
-    components: { HeaderComponent }
+    components: {
+        HeaderComponent
+    },
 }
 </script>
 
@@ -63,7 +65,8 @@ export default {
                                 <h5 class="text-danger" v-if="teacher.sponsored_until">Sponsorizzato</h5>
                             </div>
                             <div class="link-wrapper text-center">
-                                <router-link class="link btn btn-success my-3 px-4" :to="{name: 'singleTeacher', params:{id: teacher.id}}">vedi</router-link>
+                                <router-link class="link btn btn-success my-3 px-4"
+                                    :to="{ name: 'singleTeacher', params: { id: teacher.id } }">vedi</router-link>
                             </div>
                         </div>
                     </div>
