@@ -13,10 +13,12 @@ export default {
 
 <style scoped lang="scss">
     .bg-app{
+        min-width: 100%;
         min-height: 100vh;
         background-attachment: fixed;
         background-image: url('../assets/img/Template-1800px-1200px.png');
         background-position: center;
         background-repeat: no-repeat;
+        background-size: cover;
     }
 </style>
