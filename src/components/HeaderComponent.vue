@@ -55,7 +55,7 @@ export default {
 
                             <select class="form-select me-2"
                                 aria-label="Default select example" v-model="store.teacherQuery.subjectQuery">
-                                <option value="">Strumenti</option>
+                                <option value="">All</option>
                                 <option v-for="subject in subjectsArray" :key="subject.id" :value="subject.name">{{
                                     subject.name
                                 }}</option>

@@ -8,7 +8,6 @@ export default {
     data() {
         return {
             teacherArray: [],
-            filteredTeacherArray: [],
             store
         };
     },
@@ -26,7 +25,7 @@ export default {
                 });
         },
         filterTeachers() {
-            this.filteredTeachersArray = []
+            this.teacherArray = []
 
             axios.post(`http://localhost:8000/api/teachers/search`, {
                 data: this.store.teacherQuery,
@@ -35,8 +34,7 @@ export default {
                 }
             })
             .then(res => {
-                this.filteredTeacherArray = res.data.results;
-                console.log(this.filteredTeacherArray);
+                this.teacherArray = res.data.results;
             });
         }
     },
@@ -51,7 +49,7 @@ export default {
     <main class="mt-3">
         <div class="container">
             <div class="row row-gap-2">
-                <template v-if="filteredTeacherArray.length === 0">
+                <template v-if="this.teacherArray.length > 0">
                     <div class="col-12 col-md-4 col-lg-3 " v-for="teacher in teacherArray" :key="teacher.id">
                         <div class="card h-100">
                             <div class="card-top text-center">
@@ -71,19 +69,7 @@ export default {
                     </div>
                 </template>
                 <template v-else>
-                    <div class="col-12 col-md-4 col-lg-3 mb-3" v-for="teacher in filteredTeacherArray" :key="teacher.id">
-                        <div class="card h-100">
-                            <div class="card-top">
-                                <img :src="teacher.full_photo_img" alt="">
-                            </div>
-                            <div class="card-body">
-                                <h2>{{ teacher.first_name }} {{ teacher.last_name }}</h2>
-                                <p>{{ teacher.bio }}</p>
-                                <p>+39 {{ teacher.phone }}</p>
-                                <h5 class="text-danger" v-if="teacher.sponsored_until">Sponsorizzato</h5>
-                            </div>
-                        </div>
-                    </div>
+                   <h5 class="text-center mt-5 text-light fs-2">Teacher not found</h5>
                 </template>
             </div>
         </div>
