@@ -8,7 +8,8 @@ export default {
     data() {
         return {
             teacherArray: [],
-            store
+            store,
+            loading:false
         };
     },
     computed: {},
@@ -18,14 +19,17 @@ export default {
     methods: {
         getData() {
             this.teacherArray = []
+            this.loading = true
 
             axios.get('http://localhost:8000/api/teachers')
                 .then(res => {
                     this.teacherArray = res.data.results;
+                    this.loading = false
                 });
         },
         filterTeachers() {
             this.teacherArray = []
+            this.loading = true
 
             axios.post(`http://localhost:8000/api/teachers/search`, {
                 data: this.store.teacherQuery,
@@ -35,6 +39,7 @@ export default {
             })
             .then(res => {
                 this.teacherArray = res.data.results;
+                this.loading = false
             });
         }
     },
@@ -47,7 +52,7 @@ export default {
 <template>
     <HeaderComponent :filterTeachers="filterTeachers"/>
     <main class="mt-3">
-        <div class="container">
+        <div v-if="teacherArray && !loading" class="container">
             <div class="row row-gap-2">
                 <template v-if="this.teacherArray.length > 0">
                     <div class="col-12 col-md-4 col-lg-3 " v-for="teacher in teacherArray" :key="teacher.id">
@@ -73,6 +78,11 @@ export default {
                 </template>
             </div>
         </div>
+        <div v-else class="text-center mt-5">
+        <div class="spinner-border text-light fs-4" style="width: 4rem; height: 4rem;" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
     </main>
 </template>
 

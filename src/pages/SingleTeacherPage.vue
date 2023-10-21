@@ -23,7 +23,6 @@ export default {
             axios.get('http://127.0.0.1:8000/api/teachers/'+ this.$route.params.id)
                 .then(res => {
                   this.singleTeacher = res.data.results;
-                  console.log(res.data.results);
                   this.loading = false;
             });
         },
@@ -34,17 +33,25 @@ export default {
 
 <template>
   <HeaderSingleComponent/>
-    <main v-if="singleTeacher && !loading" class="text-light">
-      <div class="card" style="width: 18rem;">
-        <img :src="singleTeacher.full_photo_img" class="card-img-top" :alt="singleTeacher.first_name">
-        <div class="card-body">
-          <h5 class="card-title">{{ singleTeacher.first_name }}</h5>
-          <p class="card-text">{{ singleTeacher.bio }}</p>
-          <p>+39 {{ singleTeacher.phone }}</p>
-          <h5 class="text-danger" v-if="singleTeacher.sponsorization.length > 0">Sponsorizzato</h5>
+    <main  class="text-light">
+      <div v-if="singleTeacher && !loading">
+        <div class="card" style="width: 18rem;">
+          <img :src="singleTeacher.full_photo_img" class="card-img-top" :alt="singleTeacher.first_name">
+          <div class="card-body">
+            <h5 class="card-title">{{ singleTeacher.first_name }}</h5>
+            <p class="card-text">{{ singleTeacher.bio }}</p>
+            <p>+39 {{ singleTeacher.phone }}</p>
+            <h5 class="text-danger" v-if="singleTeacher.sponsorization.length > 0">Sponsorizzato</h5>
+          </div>
+        </div>
+      </div>
+      <div v-else class="text-center mt-5">
+        <div class="spinner-border text-light fs-4" style="width: 4rem; height: 4rem;" role="status">
+          <span class="visually-hidden">Loading...</span>
         </div>
       </div>
     </main>
+
 </template>
 
 <style scoped>
