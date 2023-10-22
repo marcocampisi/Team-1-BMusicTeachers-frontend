@@ -46,9 +46,6 @@ export default {
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Messaggi</a>
-                            </li>
                         </ul>
 
                         <form @submit.prevent="filterTeachers()" class="d-flex me-2" role="search">

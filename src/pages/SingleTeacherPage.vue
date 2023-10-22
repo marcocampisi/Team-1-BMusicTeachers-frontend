@@ -9,7 +9,10 @@ export default {
       store,
       singleTeacher:null,
       loading:false,
-      messageSendMessage:'',
+      textSendMessage:'',
+      errorSendMessage:'',
+      textSendReview:'',
+      errorSendReview:'',
     }
   },
   components:{
@@ -30,26 +33,73 @@ export default {
           });
       },
       addMessageFeedback(res) {
-        this.messageSendMessage = res.data.message;
-        setTimeout(() => {
-          this.messageSendMessage = '';
-        }, 2000);
+        if(res){
+          this.textSendMessage = res.data.message;
+          setTimeout(() => {
+            this.textSendMessage = '';
+          }, 2000);
+        }else{
+          this.errorSendMessage = "Riempi tutti i campi";
+          setTimeout(() => {
+            this.errorSendMessage = '';
+          }, 2000);
+        }
+      },
+      addReviewFeedback(res) {
+        console.log(res)
+        if(res){
+          this.textSendReview = res.data.message;
+          setTimeout(() => {
+            this.textSendReview = '';
+          }, 2000);
+        }else{
+          this.errorSendReview = "Riempi tutti i campi";
+          setTimeout(() => {
+            this.errorSendReview = '';
+          }, 2000);
+        }
       },
       sendMessage(){
-      this.store.messageQuery.teacher_id = this.singleTeacher.id;
+        this.store.messageQuery.teacher_id = this.singleTeacher.id;
 
-      axios.post(`http://127.0.0.1:8000/api/message/create`, {
-            data: this.store.messageQuery,
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
-        .then(res => {
-            this.store.messageQuery.teacher_id = null
-            this.store.messageQuery.name = ''
-            this.store.messageQuery.content = ''
-            this.addMessageFeedback(res)
-        });
+        if(this.store.messageQuery.content != ''){
+          axios.post(`http://127.0.0.1:8000/api/message/create`, {
+                data: this.store.messageQuery,
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(res => {
+                this.store.messageQuery.teacher_id = null
+                this.store.messageQuery.name = ''
+                this.store.messageQuery.content = ''
+                this.addMessageFeedback(res)
+            });
+          }
+        else{
+          this.addMessageFeedback()
+        }
+      },
+      sendReview(){
+        this.store.reviewQueryData.teacher_id = this.singleTeacher.id;
+
+        if(this.store.reviewQueryData.content != '' && this.store.reviewQueryData.name != ''){
+          axios.post(`http://127.0.0.1:8000/api/reviews/create`, {
+                data: this.store.reviewQueryData,
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(res => {
+                this.store.reviewQueryData.teacher_id = null
+                this.store.reviewQueryData.name = ''
+                this.store.reviewQueryData.content = ''
+                this.addReviewFeedback(res)
+            });
+          }
+        else{
+          this.addReviewFeedback()
+        }
       }
   },
 }
@@ -102,8 +152,9 @@ export default {
 
       <div class="container">
         <div class="form-wrapper text-light mt-4"> 
-          <h1 class="text-success" v-if="messageSendMessage != '' ">{{ messageSendMessage }}</h1>
-          <h2>Invia un messaggio al nostro teacher</h2>
+          <h1 class="text-success" v-if="textSendMessage != '' && !errorSendMessage  ">{{ textSendMessage }}</h1>
+          <h1 class="text-danger" v-else>{{ errorSendMessage }}</h1>
+          <h2>Contatta il nostro Insegnante</h2>
           <form @submit.prevent="sendMessage()">
             <div class="mb-3">
               <label for="name" name="name" class="form-label" >Digita il tuo nome</label>
@@ -111,9 +162,28 @@ export default {
             </div>
             <div class="mb-3">
               <label for="content" name="content" class="form-label">Inserisci il tuo messaggio</label>
-              <textarea class="form-control" id="content" rows="3" v-model="store.messageQuery.content"></textarea>
+              <textarea class="form-control" id="content" rows="3"  required v-model="store.messageQuery.content"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-success">Invia</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="form-wrapper text-light mt-4"> 
+          <h1 class="text-success" v-if="textSendReview != '' && !errorSendReview  ">{{ textSendReview }}</h1>
+          <h1 class="text-danger" v-else>{{ errorSendReview }}</h1>
+          <h2>Lascia una testimonianza</h2>
+          <form @submit.prevent="sendReview()">
+            <div class="mb-3">
+              <label for="name" name="name" class="form-label" >Digita il tuo nome</label>
+              <input type="text" class="form-control" id="name" v-model="store.reviewQueryData.name">
+            </div>
+            <div class="mb-3">
+              <label for="content" name="content" class="form-label">Inserisci la testimonianza</label>
+              <textarea class="form-control" id="content" rows="3"  required v-model="store.reviewQueryData.content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Invia</button>
           </form>
         </div>
       </div>

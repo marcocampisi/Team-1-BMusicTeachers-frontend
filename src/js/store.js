@@ -9,5 +9,10 @@ export const store = reactive({
         name:'',
         content: '',
         teacher_id:null,
+    },
+    reviewQueryData:{
+        name:'',
+        content: '',
+        teacher_id:null,
     }
 })
