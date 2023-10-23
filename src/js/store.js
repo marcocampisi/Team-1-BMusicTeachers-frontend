@@ -16,7 +16,7 @@ export const store = reactive({
         teacher_id:null,
     },
     ratingQuery:{
-        value:'',
+        rating_id:'',
         teacher_id:null,
     },
 })

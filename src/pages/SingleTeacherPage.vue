@@ -40,7 +40,6 @@ export default {
             axios.get('http://localhost:8000/api/ratings')
                 .then(res => {
                     this.ratingArray = res.data.results;
-                    console.log( this.ratingArray[0].id)
                 });
       },
       addMessageFeedback(res) {
@@ -57,7 +56,6 @@ export default {
         }
       },
       addReviewFeedback(res) {
-        console.log(res)
         if(res){
           this.textSendReview = res.data.message;
           setTimeout(() => {
@@ -85,6 +83,9 @@ export default {
                 this.store.messageQuery.name = ''
                 this.store.messageQuery.content = ''
                 this.addMessageFeedback(res)
+                setTimeout(() => {
+                this.openModal('message');
+              }, 1000);
             });
           }
         else{
@@ -106,26 +107,31 @@ export default {
                 this.store.reviewQueryData.name = ''
                 this.store.reviewQueryData.content = ''
                 this.addReviewFeedback(res)
+                setTimeout(() => {
+                this.openModal('ratings');
+              }, 1000);
             });
           }
         else{
           this.addReviewFeedback()
         }
 
-        this.store.ratingQuery.teacher_id = this.singleTeacher.id;
-        axios.post(`http://127.0.0.1:8000/api/ratings/create`, {
-                data: this.store.ratingQuery,
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-            .then(res => {
-              console.log(res)
-                // this.store.reviewQueryData.teacher_id = null
-                // this.store.reviewQueryData.name = ''
-                // this.store.reviewQueryData.content = ''
-                // this.addReviewFeedback(res)
-            });
+        if(this.store.ratingQuery != ''){
+          this.store.ratingQuery.teacher_id = this.singleTeacher.id;
+          axios.post(`http://127.0.0.1:8000/api/ratings/create`, {
+                  data: this.store.ratingQuery,
+                  headers: {
+                      'Content-Type': 'multipart/form-data'
+                  }
+              })
+              .then(res => {
+                this.store.ratingQuery.teacher_id = null;
+                this.store.ratingQuery.rating_id = null;
+                setTimeout(() => {
+                  this.openModal('ratings');
+                }, 1000);
+              });
+        }
       },
       openModal(modal){
         if(modal == 'message'){
@@ -219,14 +225,14 @@ export default {
             </div>
             
             <p class="mb-1">Valuta l'insegnante</p>
-            <select class="form-select me-2" aria-label="Default select example" v-model="store.ratingQuery">
+            <select class="form-select me-2" aria-label="Default select example" v-model="store.ratingQuery.rating_id">
                 <option v-for="rating in ratingArray" :key="rating.id" :value="rating.id">{{
                     rating.value
                 }}</option>
             </select>
 
             <div class="my-3">
-              <label for="content" name="content" class="form-label">Inserisci la testimonianza</label>
+              <label for="content" name="content" class="form-label">Inserisci il testo della recensione</label>
               <textarea class="form-control" id="content" rows="3"  required v-model="store.reviewQueryData.content"></textarea>
             </div>
             <button type="submit" class="btn btn-success">Invia</button>
