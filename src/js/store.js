@@ -14,5 +14,9 @@ export const store = reactive({
         name:'',
         content: '',
         teacher_id:null,
-    }
+    },
+    ratingQuery:{
+        value:'',
+        teacher_id:null,
+    },
 })

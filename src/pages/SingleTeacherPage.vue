@@ -8,11 +8,14 @@ export default {
     return{
       store,
       singleTeacher:null,
+      ratingArray: [],
       loading:false,
       textSendMessage:'',
       errorSendMessage:'',
       textSendReview:'',
       errorSendReview:'',
+      messageModalOpen:false,
+      reviewModalOpen:false
     }
   },
   components:{
@@ -20,6 +23,7 @@ export default {
   },
   created() {
     this.getSingleTeacher();
+    this.getRating();
   },
   methods: {
       getSingleTeacher() {
@@ -31,6 +35,13 @@ export default {
                 this.singleTeacher = res.data.results;
                 this.loading = false;
           });
+      },
+      getRating(){
+            axios.get('http://localhost:8000/api/ratings')
+                .then(res => {
+                    this.ratingArray = res.data.results;
+                    console.log( this.ratingArray[0].id)
+                });
       },
       addMessageFeedback(res) {
         if(res){
@@ -100,6 +111,29 @@ export default {
         else{
           this.addReviewFeedback()
         }
+
+        this.store.ratingQuery.teacher_id = this.singleTeacher.id;
+        axios.post(`http://127.0.0.1:8000/api/ratings/create`, {
+                data: this.store.ratingQuery,
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(res => {
+              console.log(res)
+                // this.store.reviewQueryData.teacher_id = null
+                // this.store.reviewQueryData.name = ''
+                // this.store.reviewQueryData.content = ''
+                // this.addReviewFeedback(res)
+            });
+      },
+      openModal(modal){
+        if(modal == 'message'){
+          this.messageModalOpen = !this.messageModalOpen;
+        }else{
+          this.reviewModalOpen = !this.reviewModalOpen;
+          
+        }
       }
   },
 }
@@ -134,6 +168,8 @@ export default {
                   </li>
                 </ul>
               </div>
+              <button @click="openModal('message')">+ messaggi</button>
+              <button @click="openModal('review')">+ recezione</button>
             </div>
             <!--end col card body-->
           </div>
@@ -150,8 +186,9 @@ export default {
       <!--end container-->
     </main>
 
-      <div class="container">
-        <div class="form-wrapper text-light mt-4"> 
+      <div class="message-modal"  v-if="messageModalOpen">
+        <div class="form-wrapper text-light mt-4 position-relative"> 
+          <button class="close-button" @click="openModal('message')">x</button>
           <h1 class="text-success" v-if="textSendMessage != '' && !errorSendMessage  ">{{ textSendMessage }}</h1>
           <h1 class="text-danger" v-else>{{ errorSendMessage }}</h1>
           <h2>Contatta il nostro Insegnante</h2>
@@ -169,17 +206,26 @@ export default {
         </div>
       </div>
 
-      <div class="container">
-        <div class="form-wrapper text-light mt-4"> 
+      <div class="reviews-modal" v-if="reviewModalOpen">
+        <div class="form-wrapper text-light mt-4 position-relative"> 
+          <button class="close-button" @click="openModal('review')">x</button>
           <h1 class="text-success" v-if="textSendReview != '' && !errorSendReview  ">{{ textSendReview }}</h1>
           <h1 class="text-danger" v-else>{{ errorSendReview }}</h1>
-          <h2>Lascia una testimonianza</h2>
+          <h2>Lascia una recensione</h2>
           <form @submit.prevent="sendReview()">
             <div class="mb-3">
               <label for="name" name="name" class="form-label" >Digita il tuo nome</label>
               <input type="text" class="form-control" id="name" v-model="store.reviewQueryData.name">
             </div>
-            <div class="mb-3">
+            
+            <p class="mb-1">Valuta l'insegnante</p>
+            <select class="form-select me-2" aria-label="Default select example" v-model="store.ratingQuery">
+                <option v-for="rating in ratingArray" :key="rating.id" :value="rating.id">{{
+                    rating.value
+                }}</option>
+            </select>
+
+            <div class="my-3">
               <label for="content" name="content" class="form-label">Inserisci la testimonianza</label>
               <textarea class="form-control" id="content" rows="3"  required v-model="store.reviewQueryData.content"></textarea>
             </div>
@@ -191,5 +237,23 @@ export default {
 
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+  .message-modal,
+  .reviews-modal {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .form-wrapper{
+      padding: 80px;
+    }
+    .close-button{
+      position: absolute;
+      top: 0px;
+     right: 0px;
+    }
+  }
 </style>

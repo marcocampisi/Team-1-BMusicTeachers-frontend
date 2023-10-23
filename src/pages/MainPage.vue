@@ -27,6 +27,7 @@ export default {
                     this.loading = false
                 });
         },
+     
         filterTeachers() {
             this.teacherArray = []
             this.loading = true

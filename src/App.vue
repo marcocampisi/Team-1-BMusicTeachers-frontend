@@ -3,7 +3,9 @@ import MainComponent from './components/MainComponent.vue';
 </script>
 
 <template>
-    <MainComponent/>
+    <div class="position-relative">
+        <MainComponent/>
+    </div>
 </template>
 
 <style scoped>
