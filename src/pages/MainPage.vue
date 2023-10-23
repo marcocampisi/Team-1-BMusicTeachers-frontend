@@ -61,6 +61,7 @@ export default {
 <template>
     <HeaderComponent/>
     <main class="mt-3">
+        <h1 class="text-center text-light">Musicisti in Rete</h1>
         <div class="search">
             <form @submit.prevent="filterTeachers()" class="d-flex me-2" role="search">
 
@@ -119,6 +120,11 @@ export default {
     max-width: 800px;
     margin-inline: auto;
     margin-block: 20px;
+}
+
+.loading{
+    margin-inline: auto;
+    margin-top: 20px;
 }
 
 </style>

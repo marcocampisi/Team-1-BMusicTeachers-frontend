@@ -65,14 +65,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 200px;
     gap: 6px;
     height: 100px;
    }
    
    .loading span {
-    width: 4px;
-    height: 50px;
+    width: 8px;
+    height: 100px;
     background: var(--first-color);
     animation: scale var(--speed-of-animation) ease-in-out infinite;
    }

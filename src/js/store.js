@@ -19,4 +19,6 @@ export const store = reactive({
         rating_id:'',
         teacher_id:null,
     },
+    messageModalOpen:false,
+    reviewModalOpen:false
 })
