@@ -9,12 +9,14 @@ export default {
         return {
             teacherArray: [],
             store,
-            loading:false
+            loading:false,
+            subjectsArray: [],
         };
     },
     computed: {},
     mounted() {
         this.getData();
+        this.getSubjects();
     },
     methods: {
         getData() {
@@ -25,6 +27,12 @@ export default {
                 .then(res => {
                     this.teacherArray = res.data.results;
                     this.loading = false
+                });
+        },
+        getSubjects() {
+            axios.get('http://localhost:8000/api/subjects')
+                .then(res => {
+                    this.subjectsArray = res.data.results;
                 });
         },
      
@@ -51,8 +59,23 @@ export default {
 </script>
 
 <template>
-    <HeaderComponent :filterTeachers="filterTeachers"/>
+    <HeaderComponent/>
     <main class="mt-3">
+        <div class="search">
+            <form @submit.prevent="filterTeachers()" class="d-flex me-2" role="search">
+
+                <select class="form-select me-2"
+                    aria-label="Default select example" v-model="store.teacherQuery.subjectQuery">
+                    <option value="">All</option>
+                    <option v-for="subject in subjectsArray" :key="subject.id" :value="subject.name">{{
+                        subject.name
+                    }}</option>
+                </select>
+
+                <input class="form-control me-2" type="search" placeholder="Cerca per nome..." aria-label="Search" v-model="store.teacherQuery.searchQuery">
+                <button class="btn btn-light" type="submit">Cerca</button>
+            </form>
+        </div>
         <div v-if="teacherArray && !loading" class="container">
             <div class="row row-gap-2">
                 <template v-if="this.teacherArray.length > 0">
@@ -80,11 +103,18 @@ export default {
             </div>
         </div>
         <div v-else class="text-center mt-5">
-        <div class="spinner-border text-light fs-4" style="width: 4rem; height: 4rem;" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      </div>
+            <div class="spinner-border text-light fs-4" style="width: 4rem; height: 4rem;" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>    
     </main>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.search{
+    max-width: 800px;
+    margin-inline: auto;
+    margin-block: 20px;
+}
+
+</style>
