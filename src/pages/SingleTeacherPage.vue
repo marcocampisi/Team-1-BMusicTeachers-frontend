@@ -182,10 +182,14 @@ export default {
            <!--end row-->
         </div>
         <!--end card-->
-        <div v-else class="text-center mt-5">
-          <div class="spinner-border text-light fs-4" style="width: 4rem; height: 4rem;" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
+        <diV v-else class="mt-5">
+            <div class="loading">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
         <!--end loader-->
       </div>
