@@ -69,8 +69,8 @@ export default {
     <div class="message-modal" >
       <div class="form-wrapper text-light mt-4 position-relative"> 
         <button class="close-button" @click="openModal('message')">x</button>
-        <h1 class="text-success" v-if="textSendMessage != '' && !errorSendMessage  ">{{ textSendMessage }}</h1>
-        <h1 class="text-danger" v-else>{{ errorSendMessage }}</h1>
+        <h1 class="text-success fs-3" v-if="textSendMessage != '' && !errorSendMessage  ">{{ textSendMessage }}</h1>
+        <h1 class="text-danger fs-3" v-else>{{ errorSendMessage }}</h1>
         <h2>Contatta il nostro Insegnante</h2>
         <form @submit.prevent="sendMessage()">
           <div class="mb-3">

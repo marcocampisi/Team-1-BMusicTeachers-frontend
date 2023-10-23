@@ -96,8 +96,8 @@ export default {
      <div class="reviews-modal">
       <div class="form-wrapper text-light mt-4 position-relative"> 
         <button class="close-button" @click="openModal('review')">x</button>
-        <h1 class="text-success" v-if="textSendReview != '' && !errorSendReview  ">{{ textSendReview }}</h1>
-        <h1 class="text-danger" v-else>{{ errorSendReview }}</h1>
+        <h1 class="text-success fs-3" v-if="textSendReview != '' && !errorSendReview  ">{{ textSendReview }}</h1>
+        <h1 class="text-danger fs-3" v-else>{{ errorSendReview }}</h1>
         <h2>Lascia una recensione</h2>
         <form @submit.prevent="sendReview()">
           <div class="mb-3">
@@ -126,7 +126,7 @@ export default {
 .reviews-modal{
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
