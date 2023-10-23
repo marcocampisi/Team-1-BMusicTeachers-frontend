@@ -110,13 +110,18 @@
 
 
 /*-----------------------------------*\
- * #SINGLE TEACHERS
+ * #CARD TEACHERS
 \*-----------------------------------*/
 
 .ms-bg-index-card{
     background: transparent;
     border-radius: 20px;
     backdrop-filter:blur(15px);
+}
+
+.my-card-slug {
+    min-height: 150px;
+    padding-top: 0;
 }
 
 img.img-card{

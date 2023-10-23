@@ -77,14 +77,14 @@ export default {
             </form>
         </div>
         <div v-if="teacherArray && !loading" class="container">
-            <div class="row row-gap-2">
+            <div class="row row-gap-3">
                 <template v-if="this.teacherArray.length > 0">
                     <div class="col-12 col-md-4 col-lg-3 " v-for="teacher in teacherArray" :key="teacher.id">
-                        <div class="card h-100">
+                        <div class="card mb-4 h-100 ms-bg-index-card border text-light position-relative text-center overflow-hidden">
                             <div class="card-top text-center">
                                 <img class="img-fluid img-card" :src="teacher.full_photo_img" alt="">
                             </div>
-                            <div class="card-body d-flex flex-column justify-content-between">
+                            <div class="card-body d-flex flex-column justify-content-between my-card-slug mt-2">
                                 <h2>{{ teacher.first_name }} {{ teacher.last_name }}</h2>
                                 <p>{{ teacher.bio }}</p>
                                 <p>+39 {{ teacher.phone }}</p>
