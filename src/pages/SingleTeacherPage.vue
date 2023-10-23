@@ -1,7 +1,7 @@
 
 <script>
 import axios from 'axios';
-import HeaderSingleComponent from '../components/HeaderSingleComponent.vue';
+import HeaderComponent from '../components/HeaderComponent.vue';
 import { store } from '../js/store';
 export default {
   data(){
@@ -19,7 +19,7 @@ export default {
     }
   },
   components:{
-    HeaderSingleComponent
+    HeaderComponent
   },
   created() {
     this.getSingleTeacher();
@@ -146,7 +146,7 @@ export default {
 </script>
 
 <template>
-  <HeaderSingleComponent/>
+  <HeaderComponent/>
     <main  class="text-light">
       <div class="container">
         <div class="card mb-3" v-if="singleTeacher && !loading">
