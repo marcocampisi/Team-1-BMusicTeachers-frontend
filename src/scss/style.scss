@@ -6,13 +6,12 @@
 
 :root {
 
-    --speed-of-animation: 0.9s;
-    --gap: 6px;
-    --first-color: #02270a;
-    --second-color: #49a84c;
-    --third-color: #f6bb02;
-    --fourth-color: #f6bb02;
-    --fifth-color: #02270a;
+    --icon-count: 3;
+    --inner-height: 4em;
+    --ratio: 2/3;
+   /* Customizable */
+    --period: 1s;
+   /* Customizable */
 }
 
 
@@ -60,62 +59,69 @@
 /*-----------------------------------*\
  * #SPINNER
 \*-----------------------------------*/  
- 
-.loading {
+.loader {
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 200px;
-    gap: 6px;
-    height: 100px;
-   }
-   
-   .loading span {
-    width: 8px;
-    height: 100px;
-    background: var(--first-color);
-    animation: scale var(--speed-of-animation) ease-in-out infinite;
-   }
-   
-   .loading span:nth-child(2) {
-    background: var(--second-color);
-    animation-delay: -0.8s;
-   }
-   
-   .loading span:nth-child(3) {
-    background: var(--third-color);
-    animation-delay: -0.7s;
-   }
-   
-   .loading span:nth-child(4) {
-    background: var(--fourth-color);
-    animation-delay: -0.6s;
-   }
-   
-   .loading span:nth-child(5) {
-    background: var(--fifth-color);
-    animation-delay: -0.5s;
-   }
-   
-   @keyframes scale {
-    0%, 40%, 100% {
-     transform: scaleY(0.05);
-    }
-   
+    justify-content: center;
+    margin-inline: auto;
+    height: var(--inner-height);
+    width: calc(var(--inner-height) * var(--ratio) * var(--icon-count));
+  }
+  
+  .loader .icon {
+    width: calc(100% / var(--icon-count));
+    height: calc(100% * var(--ratio));
+    animation: loader-bounce02 var(--period) infinite linear;
+  }
+  
+  /*
+   * animation delay = (n - 1) / steps * period
+   */
+  
+  .loader .icon:nth-of-type(2) {
+    animation-delay: calc(1 / 5 * var(--period));
+  }
+  
+  .loader .icon:nth-of-type(3) {
+    animation-delay: calc(2 / 5 * var(--period));
+  }
+  
+  @keyframes loader-bounce02 {
     20% {
-     transform: scaleY(1);
+      /* Raise */
+      transform: translateY(calc(-50% * (1 - var(--ratio))));
     }
-   }
+  
+    40% {
+      /* Lower */
+      transform: translateY(calc(50% * (1 - var(--ratio))));
+    }
+  
+    60% {
+      /* Keep centered */
+      transform: translateY(0);
+    }
+  
+    80% {
+      /* Keep centered */
+      transform: translateY(0);
+    }
+  }
 
 
 /*-----------------------------------*\
- * #SINGLE TEACHERS
+ * #CARD TEACHERS
 \*-----------------------------------*/
 
 .ms-bg-index-card{
     background: transparent;
     border-radius: 20px;
     backdrop-filter:blur(15px);
+}
+
+.my-card-slug {
+    min-height: 150px;
+    padding-top: 0;
 }
 
 img.img-card{

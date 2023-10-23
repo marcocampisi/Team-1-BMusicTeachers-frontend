@@ -47,11 +47,11 @@ export default {
 
 <template>
   <HeaderComponent/>
-    <main  class="text-light">
+    <main class="text-light">
       <div class="container">
-        <div class="card mb-3" v-if="singleTeacher && !loading">
+        <div class="card mb-3 ms-bg-index-card text-white" v-if="singleTeacher && !loading">
           <div class="row g-0">
-            <div class="col-md-4">
+            <div class="col-md-4 ">
               <img :src="singleTeacher.full_photo_img" class="card-img-top" :alt="singleTeacher.first_name">
             </div>
             <!--end col card header-->
@@ -60,11 +60,11 @@ export default {
                 <h2 class="card-title">{{ singleTeacher.first_name }} {{ singleTeacher.last_name }}</h2>
                 <h5 class="text-danger" v-if="singleTeacher.sponsored_until">Sponsorizzato</h5>
                 <p class="card-text">
-                  <span class="fw-bold">Descrizione:</span> 
+                  <span class="fw-bold">Descrizione :</span> 
                   {{ singleTeacher.bio }}
                 </p>
                 <p>
-                  <span class="fw-bold">Contatti:</span> 
+                  <span class="fw-bold">Contatti :</span> 
                   +39 {{ singleTeacher.phone }}
                 </p>
                 <h3>Cosa insegno?</h3>
@@ -83,12 +83,25 @@ export default {
         </div>
         <!--end card-->
         <div v-else class="mt-5">
-            <div class="loading">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="loader">
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" viewBox="0 0 100 100">
+                        <ellipse transform="rotate(-21.283 49.994 75.642)" cx="50" cy="75.651" rx="19.347" ry="16.432" fill="currentColor"></ellipse>
+                        <path fill="currentColor" d="M58.474 7.5h10.258v63.568H58.474z"></path>
+                    </svg>
+                </span>
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" viewBox="0 0 100 100">
+                        <ellipse transform="rotate(-21.283 49.994 75.642)" cx="50" cy="75.651" rx="19.347" ry="16.432" fill="currentColor"></ellipse>
+                        <path fill="currentColor" d="M58.474 7.5h10.258v63.568H58.474z"></path>
+                    </svg>
+                </span>
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" viewBox="0 0 100 100">
+                        <ellipse transform="rotate(-21.283 49.994 75.642)" cx="50" cy="75.651" rx="19.347" ry="16.432" fill="currentColor"></ellipse>
+                        <path fill="currentColor" d="M58.474 7.5h10.258v63.568H58.474z"></path>
+                    </svg>
+                </span>
             </div>
         </div>
         <!--end loader-->
