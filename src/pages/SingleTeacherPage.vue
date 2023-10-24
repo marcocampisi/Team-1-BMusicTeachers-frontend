@@ -74,8 +74,8 @@ export default {
                   </li>
                 </ul>
               </div>
-              <button class="btn btn-outline-light mx-2" @click="openModal('message')">+ messaggi</button>
-              <button class="btn btn-outline-light mx-2" @click="openModal('review')">+ recezione</button>
+              <button class="btn btn-outline-light mx-2" @click="openModal('message')">Invia Messaggio</button>
+              <button class="btn btn-outline-light mx-2" @click="openModal('review')">Aggiungi Recesione</button>
             </div>
             <!--end col card body-->
           </div>
