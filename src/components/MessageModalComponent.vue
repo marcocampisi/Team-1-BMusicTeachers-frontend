@@ -66,9 +66,9 @@ export default {
 </script>
 
 <template>
-    <div class="message-modal" >
-      <div class="form-wrapper text-light mt-4 position-relative"> 
-        <button class="close-button" @click="openModal('message')">x</button>
+    <div class="message-modal " >
+      <div class="form-wrapper text-light mt-4 position-relative border rounded"> 
+        <button class="close-button btn btn-danger" @click="openModal('message')">x</button>
         <h1 class="text-success fs-3" v-if="textSendMessage != '' && !errorSendMessage  ">{{ textSendMessage }}</h1>
         <h1 class="text-danger fs-3" v-else>{{ errorSendMessage }}</h1>
         <h2>Contatta il nostro Insegnante</h2>
@@ -91,7 +91,8 @@ export default {
 .message-modal{
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background: transparent;
+    backdrop-filter:blur(15px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -101,8 +102,8 @@ export default {
     }
     .close-button{
       position: absolute;
-      top: 0px;
-     right: 0px;
+      top: 10px;
+      right: 10px;
     }
   }
 </style>
