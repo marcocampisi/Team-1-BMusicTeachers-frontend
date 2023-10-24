@@ -29,26 +29,26 @@ export default {
                 <a class="navbar-brand" href="#">
                     <img class="logo" src="../assets/logo.png" alt="Musicisti in rete Logo">
                 </a>
-                <div class="flex-end">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <router-link class="nav-link text-light fs-5" :to="{name: 'HomePage'}">Home</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link class="nav-link text-light fs-5" :to="{name: 'HomePage'}">I Nostri Teachers</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link class="nav-link text-light fs-5" :to="{name: 'HomePage'}">Recensioni</router-link>
-                            </li>
-                        </ul>
-                    </div>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <router-link class="nav-link text-light fs-5" :to="{name: 'HomePage'}">Home</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link text-light fs-5" :to="{name: 'HomePage'}">I Nostri Teachers</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link text-light fs-5" :to="{name: 'HomePage'}">Recensioni</router-link>
+                        </li>
+                    </ul>
                 </div>
+               
             </div>
         </nav>
     </header>
