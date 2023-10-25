@@ -12,9 +12,6 @@ export default {
            
         }
     },
-    mounted() {
-    this.$router.push(route('register'));
-    },
     methods: {
        
     }
@@ -47,7 +44,7 @@ export default {
                             <router-link class="nav-link text-light fs-6" :to="{name: 'HomePage'}">Chi Siamo</router-link>
                         </li>
                         <button class="btn">
-                            <router-link class="btn text-light fs-6" :to="{name: 'register'}">Sei un Professore?</router-link>
+                            <a href="http://127.0.0.1:8000/" target="_blank"><ion-icon name="people-circle-outline"></ion-icon>Sei un professore?</a>
                         </button>
                     </ul>
                 </div>

@@ -21,10 +21,6 @@ const router = createRouter({
       path:'/teacher/:id',
       name:'singleTeacher',
       component:SingleTeacherPage,
-    },
-    {
-      path:'/register',
-      name:'register',
     }
   ]
 })
