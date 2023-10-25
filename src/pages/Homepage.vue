@@ -62,19 +62,22 @@ export default {
         <div class="debug">
             <h1 class="text-left h1 text-light fw-bold">Musicisti<br>in Rete</h1>
             <h6 class="h6">Migliaia di insegnanti a portata di click</h6>
-            <button>
-                <div class="text">
-                    <span>Vai</span>
-                    <span>al</span>
-                    <span>tasto</span>
-                </div>
-                <div class="clone">
-                    <span>Teachers</span>
-                </div>
-                <svg width="20px" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-            </button>
+            <router-link :to="{name: 'teachers'}">
+                <button class="mt-5">
+                    <div class="text">
+                        <span>Vai</span>
+                        <span>al</span>
+                        <span>tasto</span>
+                    </div>
+                    <div class="clone">
+                        <span>Teachers</span>
+                    </div>
+                    <svg width="20px" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </button>
+            </router-link>   
+
         </div>
 
         <!-- <form action="" class="input-search" @submit.prevent="filterTeachers()" role="search">
@@ -111,7 +114,7 @@ button {
   height: 56px;
   overflow: hidden;
   border: none;
-  color: green;
+  color: rgba(11, 153, 163, 0.842);
   background: none;
   position: relative;
   padding-bottom: 2em;
