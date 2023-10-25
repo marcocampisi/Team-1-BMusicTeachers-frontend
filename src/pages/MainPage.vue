@@ -50,6 +50,13 @@ export default {
                 this.teacherArray = res.data.results;
                 this.loading = false
             });
+        },
+        truncatedBio(teacher) {
+            if (teacher.bio.length > 100) {
+                return teacher.bio.substring(0, 100) + '...';
+            } else {
+                return teacher.bio;
+            }
         }
     },
     components: {
@@ -87,7 +94,7 @@ export default {
                             </div>
                             <div class="card-body d-flex flex-column justify-content-between my-card-slug mt-2">
                                 <h2>{{ teacher.first_name }} {{ teacher.last_name }}</h2>
-                                <p>{{ teacher.bio }}</p>
+                                <p>{{ truncatedBio(teacher) }}</p>
                                 <p>+39 {{ teacher.phone }}</p>
                                 <h5 class="text-danger" v-if="teacher.sponsored_until">Sponsorizzato</h5>
                             </div>
