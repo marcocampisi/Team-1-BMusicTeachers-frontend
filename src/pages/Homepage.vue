@@ -65,9 +65,9 @@ export default {
             <router-link :to="{name: 'teachers'}">
                 <button class="mt-5">
                     <div class="text">
-                        <span>Vai</span>
-                        <span>al</span>
-                        <span>tasto</span>
+                        <span>Scegli</span>
+                        <span>il</span>
+                        <span>tuo</span>
                     </div>
                     <div class="clone">
                         <span>Teachers</span>
@@ -77,16 +77,7 @@ export default {
                     </svg>
                 </button>
             </router-link>   
-
         </div>
-
-        <!-- <form action="" class="input-search" @submit.prevent="filterTeachers()" role="search">
-            <div class="input-box">
-                <i class="icon ion-md-search"></i>
-                <input type="search" placeholder="Cosa aspetti?cerca subito l'insegnante che fa per te">
-                <button class="button-search">Cerca</button>
-            </div>
-        </form> -->
     </main>
 </template>
 
@@ -99,6 +90,7 @@ export default {
     font-family: 'Titillium Web';
 }
 .search{
+
     max-width: 800px;
     margin-inline: auto;
     margin-block: 20px;
@@ -114,7 +106,7 @@ button {
   height: 56px;
   overflow: hidden;
   border: none;
-  color: rgba(11, 153, 163, 0.842);
+  color: rgba(131, 75, 196, 0.849);
   background: none;
   position: relative;
   padding-bottom: 2em;
@@ -195,5 +187,6 @@ button svg {
 button:hover svg {
   transform: translateY(-50%) rotate(-90deg);
 }
+
 
 </style>

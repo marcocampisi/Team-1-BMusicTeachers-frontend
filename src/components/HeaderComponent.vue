@@ -33,7 +33,7 @@ export default {
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav nav-header ms-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav nav-header ms-auto mb-lg-0">
                         <li class="nav-item">
                             <router-link class="nav-link color-lg fw-bold" :to="{name: 'HomePage'}">Home</router-link>
                         </li>
@@ -41,7 +41,7 @@ export default {
                             <router-link class="nav-link color-lg fw-bold" :to="{name: 'teachers'}">I Nostri Teachers</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link color-lg fw-bold" :to="{name: 'HomePage'}">Chi Siamo</router-link>
+                            <router-link class="nav-link color-lg fw-bold" :to="{name: 'info'}">Chi Siamo</router-link>
                         </li>
                         <a class="button-64 m-l-1" href="http://127.0.0.1:8000" target="_blank"><span class="text"><i class="icon ion-md-person"></i>  Sei un professore?</span></a>
                     </ul>
@@ -76,7 +76,7 @@ export default {
   color: rgba(255,255,255);
   position: relative;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .nav-header .color-lg::before,
@@ -115,7 +115,6 @@ export default {
 
 .nav-header .color-lg:hover {
   color: rgb(57, 241, 11);
-  backdrop-filter: blur(6px);
 }
 
 </style>

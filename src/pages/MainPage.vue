@@ -92,11 +92,11 @@ export default {
                             <div class="card-top text-center">
                                 <img class="img-fluid img-card" :src="teacher.full_photo_img" alt="">
                             </div>
-                            <div class="card-body d-flex flex-column justify-content-between my-card-slug mt-2">
+                            <div class="card-body d-flex flex-column justify-content-between align-items-center my-card-slug mt-2">
                                 <h2>{{ teacher.first_name }} {{ teacher.last_name }}</h2>
                                 <p>{{ truncatedBio(teacher) }}</p>
                                 <p>+39 {{ teacher.phone }}</p>
-                                <h5 class="text-danger" v-if="teacher.sponsored_until">Sponsorizzato</h5>
+                                <button class="button-sponsorization" v-if="teacher.sponsored_until"><i class="icon ion-md-card"></i> Sponsorizzato</button>
                             </div>
                             <div class="link-wrapper text-center">
                                 <router-link class="link btn btn-success my-3 px-4"
@@ -136,6 +136,12 @@ export default {
 </template>
 
 <style scoped lang="scss">
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,600');
+
+*{
+    font-family: 'Titillium Web';
+}
 .search{
     max-width: 800px;
     margin-inline: auto;
@@ -145,6 +151,25 @@ export default {
 .loading{
     margin-inline: auto;
     margin-top: 20px;
+}
+
+.button-sponsorization {
+  position: relative;
+  background-color: rgb(243, 22, 22);
+  border-radius: 5px;
+  box-shadow: rgb(131, 1, 1) 0px 4px 0px 0px;
+  padding: 12px;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  width: 145px;
+  height: 40px;
+  color: #fff;
+  border: none;
+  font-size: 15px;
+  transition: all .3s ease-in-out;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 

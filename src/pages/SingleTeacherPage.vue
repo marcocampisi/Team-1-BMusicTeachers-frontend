@@ -58,8 +58,8 @@ export default {
             <div class="col-md-8">
               <div class="card-body">
                 <h2 class="card-title">{{ singleTeacher.first_name }} {{ singleTeacher.last_name }}</h2>
-                <h5 class="text-danger" v-if="singleTeacher.sponsored_until">Sponsorizzato</h5>
-                <p class="card-text">
+                <button class="button-sponsorization" v-if="singleTeacher.sponsored_until"><i class="icon ion-md-card"></i> Sponsorizzato</button>
+                <p class="mt-3 card-text">
                   <span class="fw-bold">Descrizione :</span> 
                   {{ singleTeacher.bio }}
                 </p>
@@ -75,7 +75,7 @@ export default {
                 </ul>
               </div>
               <button class="btn btn-outline-light mx-2" @click="openModal('message')">Invia Messaggio</button>
-              <button class="btn btn-outline-light mx-2" @click="openModal('review')">Aggiungi Recesione</button>
+              <button class="btn btn-outline-light mx-2" @click="openModal('review')">Aggiungi Recensione</button>
             </div>
             <!--end col card body-->
           </div>
@@ -113,4 +113,29 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,600');
+
+*{
+    font-family: 'Titillium Web';
+}
+.button-sponsorization {
+  position: relative;
+  background-color: rgb(243, 22, 22);
+  border-radius: 5px;
+  box-shadow: rgb(131, 1, 1) 0px 4px 0px 0px;
+  padding: 12px;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  width: 145px;
+  height: 40px;
+  color: #fff;
+  border: none;
+  font-size: 15px;
+  transition: all .3s ease-in-out;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 </style>
