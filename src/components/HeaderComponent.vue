@@ -44,7 +44,9 @@ export default {
                             <router-link class="nav-link text-light fs-6" :to="{name: 'HomePage'}">Chi Siamo</router-link>
                         </li>
                         <button class="btn">
-                            <a href="http://127.0.0.1:8000/" target="_blank"><ion-icon name="people-circle-outline"></ion-icon>Sei un professore?</a>
+                            <a href="http://127.0.0.1:8000/" target="_blank">
+                                <i class="icon ion-md-person"></i>
+                                Sei un professore?</a>
                         </button>
                     </ul>
                 </div>
