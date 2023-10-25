@@ -61,15 +61,16 @@ export default {
     <main class="mt-3 container">
         <div class="debug">
             <h1 class="text-left h1 text-light fw-bold">Musicisti<br>in Rete</h1>
-            <h6 class="text-success h6">Migliaia di insegnanti a portata di click</h6>
+            <h6 class="h6">Migliaia di insegnanti a portata di click</h6>
         </div>
-        <form action="" class="input-search" @submit.prevent="filterTeachers()" role="search">
+
+        <!-- <form action="" class="input-search" @submit.prevent="filterTeachers()" role="search">
             <div class="input-box">
                 <i class="icon ion-md-search"></i>
                 <input type="search" placeholder="Cosa aspetti?cerca subito l'insegnante che fa per te">
                 <button class="button-search">Cerca</button>
             </div>
-        </form>
+        </form> -->
     </main>
 </template>
 

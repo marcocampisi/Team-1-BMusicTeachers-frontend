@@ -33,24 +33,17 @@ export default {
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav nav-header ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <router-link class="nav-link text-light fs-6 text-dark fw-bold" :to="{name: 'HomePage'}">Home</router-link>
+                            <router-link class="nav-link color-lg fw-bold" :to="{name: 'HomePage'}">Home</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link text-light fs-6" :to="{name: 'teachers'}">I Nostri Teachers</router-link>
+                            <router-link class="nav-link color-lg fw-bold" :to="{name: 'teachers'}">I Nostri Teachers</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link text-light fs-6" :to="{name: 'HomePage'}">Chi Siamo</router-link>
+                            <router-link class="nav-link color-lg fw-bold" :to="{name: 'HomePage'}">Chi Siamo</router-link>
                         </li>
-                        <!-- <button class="btn">
-                            <a href="http://127.0.0.1:8000/" target="_blank">
-                                Sei un professore?</a>
-                        </button> -->
-                        <button class="button-64" role="button">
-                            <a href="http://127.0.0.1:8000/" target="_blank"></a>
-                            <span class="text"><i class="icon ion-md-person"></i>  Sei un professore?</span>
-                        </button>
+                        <a class="button-64 m-l-1" href="http://127.0.0.1:8000" target="_blank"><span class="text"><i class="icon ion-md-person"></i>  Sei un professore?</span></a>
                     </ul>
                 </div>
                
@@ -59,4 +52,66 @@ export default {
     </header>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,600');
+
+.nav-header *{
+  transition: all .35s ease;
+}
+
+.color-lg{
+    color: rgb(57, 241, 11);
+    font-family: 'Titillium Web';
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.nav-header .color-lg{
+  padding: .5em .8em;
+  color: rgba(255,255,255);
+  position: relative;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.nav-header .color-lg::before,
+.nav-header .color-lg::after {
+  content: '';
+  height: 14px;
+  width: 14px;
+  position: absolute;
+  transition: all .35s ease;
+  opacity: 0;
+}
+
+.nav-header .color-lg::before {
+  content: '';
+  right: 0;
+  top: 0;
+  border-top: 3px solid #3E8914;
+  border-right: 3px solid #2E640F;
+  transform: translate(-100%, 50%);
+}
+
+.nav-header .color-lg:after {
+  content: '';
+  left: 0;
+  bottom: 0;
+  border-bottom: 3px solid #2E640F;
+  border-left: 3px solid #3E8914;
+  transform: translate(100%, -50%)
+}
+
+.nav-header .color-lg:hover:before,
+.nav-header .color-lg:hover:after{
+  transform: translate(0,0);
+  opacity: 1;
+}
+
+.nav-header .color-lg:hover {
+  color: rgb(57, 241, 11);
+  backdrop-filter: blur(6px);
+}
+
+</style>
