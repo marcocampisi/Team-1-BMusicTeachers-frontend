@@ -75,6 +75,13 @@ export default {
 </template>
 
 <style scoped lang="scss">
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:400,600');
+
+.h1,
+.h6{
+    font-family: 'Titillium Web';
+}
 .search{
     max-width: 800px;
     margin-inline: auto;
@@ -85,5 +92,6 @@ export default {
     margin-inline: auto;
     margin-top: 20px;
 }
+
 
 </style>

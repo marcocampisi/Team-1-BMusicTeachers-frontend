@@ -66,7 +66,11 @@ export default {
     text-transform: uppercase;
     font-weight: 300;
 }
+.button-64{
+    font-family: 'Titillium Web';
+    text-transform: uppercase;
 
+}
 .nav-header .color-lg{
   padding: .5em .8em;
   color: rgba(255,255,255);
