@@ -43,10 +43,13 @@ export default {
                         <li class="nav-item">
                             <router-link class="nav-link text-light fs-6" :to="{name: 'HomePage'}">Chi Siamo</router-link>
                         </li>
-                        <button class="btn">
+                        <!-- <button class="btn">
                             <a href="http://127.0.0.1:8000/" target="_blank">
-                                <i class="icon ion-md-person"></i>
                                 Sei un professore?</a>
+                        </button> -->
+                        <button class="button-64" role="button">
+                            <a href="http://127.0.0.1:8000/" target="_blank"></a>
+                            <span class="text"><i class="icon ion-md-person"></i>  Sei un professore?</span>
                         </button>
                     </ul>
                 </div>

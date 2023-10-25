@@ -66,7 +66,7 @@ export default {
         <form action="" class="input-search" @submit.prevent="filterTeachers()" role="search">
             <div class="input-box">
                 <i class="icon ion-md-search"></i>
-                <input type="search" placeholder="Quale strumento vuoi imparare oggi?">
+                <input type="search" placeholder="Cosa aspetti?cerca subito l'insegnante che fa per te">
                 <button class="button-search">Cerca</button>
             </div>
         </form>
