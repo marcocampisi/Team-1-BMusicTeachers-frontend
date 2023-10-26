@@ -43,7 +43,7 @@ export default {
                         <li class="nav-item">
                             <router-link class="nav-link color-lg fw-bold" :to="{name: 'info'}">Chi Siamo</router-link>
                         </li>
-                        <a class="button-64 m-l-1" href="http://127.0.0.1:8000/login" target="_blank"><span class="text"><i class="icon ion-md-person"></i>  Sei un professore?</span></a>
+                        <a class="button-64 m-l-1" href="http://localhost:8000/login"><span class="text"><i class="icon ion-md-person"></i>  Sei un professore?</span></a>
                     </ul>
                 </div>
                
