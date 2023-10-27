@@ -68,8 +68,8 @@ export default {
 <template>
     <HeaderComponent />
     <main class="mt-3">
-        <h1 class="text-center text-light">Musicisti in Rete</h1>
-        <div class="search">
+        <h1 class="text-center text-light fw-bold">Musicisti in Rete</h1>
+        <div class="search px-4">
             <form @submit.prevent="filterTeachers()" class="d-flex me-2" role="search">
 
                 <select class="form-select me-2" aria-label="Default select example"
@@ -82,7 +82,7 @@ export default {
 
                 <input class="form-control me-2" type="search" placeholder="Cerca per nome..." aria-label="Search"
                     v-model="store.teacherQuery.searchQuery">
-                <button class="btn btn-light" type="submit">Cerca</button>
+                <button class="btn btn-light fw-bold" type="submit">Cerca</button>
             </form>
         </div>
         <div v-if="teacherArray && !loading" class="container">
@@ -99,11 +99,13 @@ export default {
                                 <h2>{{ teacher.first_name }} {{ teacher.last_name }}</h2>
                                 <p>{{ truncatedBio(teacher) }}</p>
                                 <p>+39 {{ teacher.phone }}</p>
-                                <button class="button-sponsorization" v-if="teacher.sponsored_until"><i
-                                        class="icon ion-md-card"></i> In Evidenza</button>
+                                <div class="badge-sponsorization w-100 justify-content-center" v-if="teacher.sponsored_until">
+                                  <i class="icon ion-md-flame"></i>
+                                  <span class="fw-bold">In Evidenza</span>
+                                </div>
                             </div>
                             <div class="link-wrapper text-center">
-                                <router-link class="link btn btn-success my-3 px-4"
+                                <router-link class="link btn btn-light fw-bold py-2 my-3 px-4"
                                     :to="{ name: 'singleTeacher', params: { id: teacher.id } }">Maggiori
                                     Dettagli</router-link>
                             </div>
@@ -161,22 +163,16 @@ export default {
     margin-top: 20px;
 }
 
-.button-sponsorization {
-    position: relative;
-    background-color: rgb(243, 22, 22);
-    border-radius: 5px;
-    box-shadow: rgb(131, 1, 1) 0px 4px 0px 0px;
-    padding: 12px;
-    background-repeat: no-repeat;
-    box-sizing: border-box;
-    width: 145px;
-    height: 40px;
-    color: #fff;
-    border: none;
-    font-size: 15px;
-    transition: all .3s ease-in-out;
-    z-index: 1;
-    overflow: hidden;
-    pointer-events: none;
+.badge-sponsorization {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255,255,255,0.2);
+  border-top: 2px solid rgba(255,255,255,0.7);
+  border-bottom: 2px solid rgba(255,255,255,0.7);
+    > i {
+      color: darkorange;
+      font-size: 2rem;
+      margin-right: 1rem;
+    }
 }
 </style>
