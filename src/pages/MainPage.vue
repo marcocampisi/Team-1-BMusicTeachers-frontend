@@ -162,17 +162,4 @@ export default {
     margin-inline: auto;
     margin-top: 20px;
 }
-
-.badge-sponsorization {
-  display: flex;
-  align-items: center;
-  background-color: rgba(255,255,255,0.2);
-  border-top: 2px solid rgba(255,255,255,0.7);
-  border-bottom: 2px solid rgba(255,255,255,0.7);
-    > i {
-      color: darkorange;
-      font-size: 2rem;
-      margin-right: 1rem;
-    }
-}
 </style>

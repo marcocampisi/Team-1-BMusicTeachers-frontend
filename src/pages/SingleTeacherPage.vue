@@ -58,7 +58,10 @@ export default {
             <div class="col-md-8">
               <div class="card-body">
                 <h2 class="card-title">{{ singleTeacher.first_name }} {{ singleTeacher.last_name }}</h2>
-                <button class="button-sponsorization" v-if="singleTeacher.sponsored_until"><i class="icon ion-md-card"></i> Sponsorizzato</button>
+                <div class="badge-sponsorization w-100 justify-content-center" v-if="singleTeacher.sponsored_until">
+                  <i class="icon ion-md-flame"></i>
+                  <span class="fw-bold">In Evidenza</span>
+                </div>
                 <p class="mt-3 card-text">
                   <span class="fw-bold">Descrizione :</span> 
                   {{ singleTeacher.bio }}
