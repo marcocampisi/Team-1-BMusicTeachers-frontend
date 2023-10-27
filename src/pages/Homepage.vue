@@ -1,55 +1,8 @@
 <script>
-import axios from 'axios';
 import HeaderComponent from '../components/HeaderComponent.vue';
-import { store } from '../js/store';
 
 export default {
     name: 'Homepage',
-    data() {
-        return {
-            teacherArray: [],
-            store,
-            loading: false,
-            subjectsArray: [],
-        };
-    },
-    methods: {
-        getData() {
-            this.teacherArray = []
-            this.loading = true
-
-            axios.get('http://localhost:8000/api/teachers')
-                .then(res => {
-                    this.teacherArray = res.data.results;
-                    this.loading = false
-                });
-        },
-        getSubjects() {
-            axios.get('http://localhost:8000/api/subjects')
-                .then(res => {
-                    this.subjectsArray = res.data.results;
-                });
-        },
-
-        filterTeachers() {
-            this.teacherArray = []
-            this.loading = true
-
-            axios.post(`http://localhost:8000/api/teachers/search`, {
-                data: this.store.teacherQuery,
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-                .then(res => {
-                    this.teacherArray = res.data.results;
-                    this.loading = false
-
-                });
-
-
-        },
-    },
     components: {
         HeaderComponent
     },
