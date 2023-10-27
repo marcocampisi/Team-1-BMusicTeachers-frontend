@@ -134,7 +134,11 @@ img.img-card{
   max-height: 300px;
   object-fit: cover;
   object-position: top center;
+/* RETTANGOLO ARROTONDATO */
+  clip-path: inset(10% round 20% 20%);
 }
+
+
 
 /*-----------------------------------*\
  * #LOGO NAVBAR
